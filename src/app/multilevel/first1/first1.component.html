@@ -1,0 +1,356 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header" *ngFor="let breadscrum of breadscrums">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+            </app-breadcrumb>
+        </div>
+
+        <div class="permit-form-wrapper">
+            <div class="card p-3">
+                <h3 class="text-center">Work Permit Form</h3>
+                <div class="card-body">
+                    <mat-stepper [linear]="isLinear" #stepper>
+                        <mat-step [stepControl]="generalForm">
+                            <form [formGroup]="generalForm" class="p-4">
+                                <ng-template matStepLabel>General Form</ng-template>
+                                <div class="mb-3">
+                                    <h6>Type Of
+                                        Work
+                                        Permit</h6>
+                                    <div id="permit-type">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Select Permit Type</mat-label>
+                                            <mat-select formControlName="type_of_work_permit" multiple>
+                                                <mat-option *ngFor="let permitType of workpermitTypes"
+                                                    [value]="permitType">
+                                                    {{permitType}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <h6>Work Planned Day</h6>
+
+                                    <md-input-container formGroupName="work_planned">
+                                        <div class="d-flex flex-row justify-content-start">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>Choose Work Date</mat-label>
+                                                <input matInput [matDatepicker]="picker" formControlName="date">
+                                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                            <nz-time-picker [(ngModel)]="start_time"
+                                                [ngModelOptions]="{standalone: true}" nzPlaceHolder="Start Time"
+                                                nzSize="small" style="height: 50px;
+                                                margin-top: 5px; margin-left: 20px">
+                                            </nz-time-picker>
+                                            <!-- <nz-time-picker [(ngModel)]="end_time" [ngModelOptions]="{standalone: true}"
+                                                nzPlaceHolder="End Time" nzSize="small" style="height: 50px;
+                                                margin-top: 5px; margin-left: 20px">
+                                            </nz-time-picker> -->
+                                            <!-- <nz-time-picker formControlName="start_time" nzSize="small" style="height: 50px;
+                                                margin-top: 5px;">
+                                            </nz-time-picker> -->
+
+                                        </div>
+
+                                    </md-input-container>
+                                </div>
+
+                                <div class="mb-3">
+                                    <md-input-container formGroupName="work_issuer">
+                                        <h6>Work Issure Details</h6>
+                                        <div class="issuer-details">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <mat-form-field appearance="outline" style="width: 70%;">
+                                                        <mat-label>Issuer Name</mat-label>
+                                                        <input matInput type="text" placeholder="Issuer Name"
+                                                            formControlName="issuer_name">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <mat-form-field appearance="outline" style="width: 70%;">
+                                                        <mat-label>Issuer Department</mat-label>
+                                                        <input matInput type="text" placeholder="Issuer Department"
+                                                            formControlName="issuer_dept">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline" style="width: 70%;">
+                                                    <mat-label>Work Supervisor Name</mat-label>
+                                                    <input matInput type="text" placeholder="Work Supervisor Name"
+                                                        formControlName="work_supervisor_name">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline" style="width: 70%;">
+                                                    <mat-label>Work Issuer Contact Number</mat-label>
+                                                    <input matInput type="phone"
+                                                        placeholder="Work Issuer Contact Number"
+                                                        formControlName="contact_number">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="mb-3">
+                                    <h6>Area Of Work</h6>
+                                    <mat-form-field appearance="outline" style="width: 50%;">
+                                        <mat-label>Enter area of work details.</mat-label>
+                                        <textarea matInput rows="4" placeholder="Enter area of work details."
+                                            formControlName="area_of_work"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="mb-3">
+                                    <h6>Machinery / Equipment Used For Work</h6>
+                                    <mat-form-field appearance="outline" style="width: 50%;">
+                                        <mat-label>Machinery / Equipment Used</mat-label>
+                                        <textarea matInput rows="4" placeholder="Enter Machinery / Equipment Used."
+                                            formControlName="equipment_used"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="mb-3">
+                                    <md-input-container formGroupName="receiver_contractor_details">
+                                        <h6>Receiver - Contractor / Vendor Details</h6>
+                                        <div class="receiver-details ">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <mat-form-field appearance="outline" style="width: 70%;">
+                                                        <mat-label>Organization Name</mat-label>
+                                                        <input matInput type="text"
+                                                            placeholder="Enter Organization Name"
+                                                            formControlName="organization_name">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <mat-form-field appearance="outline" style="width: 70%;">
+                                                        <mat-label>Number of Workers</mat-label>
+                                                        <input matInput type="number"
+                                                            placeholder="Enrter Number of Workers"
+                                                            formControlName="no_of_workders">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <mat-form-field appearance="outline" style="width: 70%;">
+                                                        <mat-label>Supervisor Name</mat-label>
+                                                        <input matInput type="text" placeholder="Enter Supervisor Name"
+                                                            formControlName="supervisor_name">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <mat-form-field appearance="outline" style="width: 70%;">
+                                                        <mat-label>Receiver Contact Number</mat-label>
+                                                        <input matInput type="phone"
+                                                            placeholder="Enter Receiver Contact Number"
+                                                            formControlName="contact_number">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                                <!-- <div class="mb-3">
+                                    <md-input-container formGroupName="method_of_statement">
+                                        <h6>Method of Statement</h6>
+                                        <div class="method-of-statement">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <label for="sub-work" class="form-label">Sub Work File</label>
+                                                        <input class="form-control form-control-lg" id="sub-work"
+                                                            type="file" style="width: 70%;"
+                                                            (change)="uploadFile($event, 'sub_work')">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <label for="equipment-used" class="form-label">Equipment
+                                                            Used File</label>
+                                                        <input class="form-control form-control-lg" id="equipment-used"
+                                                            type="file" style="width: 70%;"
+                                                            (change)="uploadFile($event, 'equipment_used')">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <label for="worker-skill" class="form-label">Worker Skill
+                                                            File</label>
+                                                        <input class="form-control form-control-lg" id="worker-skill"
+                                                            type="file" style="width: 70%;"
+                                                            (change)="uploadFile($event, 'worker_skill')">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <label for="equipment-certificate" class="form-label">Equipment
+                                                            Certificate File</label>
+                                                        <input class="form-control form-control-lg"
+                                                            id="equipment-certificate" type="file" style="width: 70%;"
+                                                            (change)="uploadFile($event, 'equipment_certificate')">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <label for="hazard-risk" class="form-label">Hazard & Risk
+                                                            File</label>
+                                                        <input class="form-control form-control-lg" id="hazard-risk"
+                                                            type="file" style="width: 70%;"
+                                                            (change)="uploadFile($event, 'hazard_and_risk')">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <label for="prevention-of-risk" class="form-label">Prevention of
+                                                            Risk File</label>
+                                                        <input class="form-control form-control-lg"
+                                                            id="prevention-of-risk" type="file" style="width: 70%;"
+                                                            (change)="uploadFile($event, 'prevention_of_risk')">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div> -->
+
+                                <div class="d-flex flex-row justify-content-end">
+                                    <!-- <button mat-raised-button color="primary"
+                                        (click)="saveGeneralForm()">Submit</button> -->
+                                    <button mat-button matStepperNext [disabled]="generalForm.invalid">Next</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="harzardsIdentifiedForm">
+                            <form [formGroup]="harzardsIdentifiedForm" class="p-4">
+                                <ng-template matStepLabel>Identified Hazards</ng-template>
+                                <div class="row">
+                                    <div *ngFor="let hazard of hazardsArray; let hazardIndex = index;" class="col-md-3">
+                                        <div class="card shadow"
+                                            [ngClass]="hazard.isSelected ? 'hazard-selected' : 'hazards-card'"
+                                            (click)="selectHazard(hazardIndex)">
+                                            <div class="card-body text-center">
+                                                <span>{{hazard.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button matStepperNext
+                                        [disabled]="!(selectedHazardsArray.length > 0)">Next</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="ppesUsedForm">
+                            <form [formGroup]="ppesUsedForm" class="p-4">
+                                <ng-template matStepLabel>PPE's To Be Used</ng-template>
+                                <div class="row">
+                                    <div *ngFor="let ppe of ppesArray; let ppeIndex = index;" class="col-md-4">
+                                        <div class="card shadow"
+                                            [ngClass]="ppe.isSelected ? 'ppe-selected' : 'ppe-card'"
+                                            (click)="selectPPE(ppeIndex)">
+                                            <div class="card-body text-center">
+                                                <span>{{ppe.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button matStepperNext
+                                        [disabled]="!(selectedPPEArray.length > 0)">Next</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="precautionsChecklistForm">
+                            <form [formGroup]="precautionsChecklistForm" class="p-4">
+                                <ng-template matStepLabel>Precautions Checklist</ng-template>
+                                <div class="row">
+                                    <h6>General Work (For all jobs)</h6>
+                                    <div class="row p-4">
+                                        <div *ngFor="let generalWorkPrecaution of generalWorkPrecautionsArray; let generalWorkPrecautionIndex = index;"
+                                            class="col-md-4">
+                                            <div class="card shadow"
+                                                [ngClass]="generalWorkPrecaution.isSelected ? 'ppe-selected' : 'ppe-card'"
+                                                (click)="selectGeneralWorkPrecaution(generalWorkPrecautionIndex)">
+                                                <div class="card-body text-center">
+                                                    <span>{{generalWorkPrecaution.value}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h6>Hot Work</h6>
+                                    <div class="row p-4">
+                                        <div *ngFor="let hotWork of hotWorkArray; let hotWorkIndex = index;"
+                                            class="col-md-4">
+                                            <div class="card shadow"
+                                                [ngClass]="hotWork.isSelected ? 'ppe-selected' : 'ppe-card'"
+                                                (click)="selectHotWorkPrecaution(hotWorkIndex)">
+                                                <div class="card-body text-center">
+                                                    <span>{{hotWork.value}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h6>Height / Fragile Roof</h6>
+                                    <div class="row p-4">
+                                        <div *ngFor="let heightOrFragileRoof of heightOrFragileRoofArray; let heightOrFragileRoofIndex = index;"
+                                            class="col-md-4">
+                                            <div class="card shadow"
+                                                [ngClass]="heightOrFragileRoof.isSelected ? 'ppe-selected' : 'ppe-card'"
+                                                (click)="selectHeightOrFragileRoofPrecaution(heightOrFragileRoofIndex)">
+                                                <div class="card-body text-center">
+                                                    <span>{{heightOrFragileRoof.value}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h6>Confined Space</h6>
+                                    <div class="row p-4">
+                                        <div *ngFor="let confinedSpace of confinedSpaceArray; let confinedSpaceIndex = index;"
+                                            class="col-md-4">
+                                            <div class="card shadow"
+                                                [ngClass]="confinedSpace.isSelected ? 'ppe-selected' : 'ppe-card'"
+                                                (click)="selectConfinedSpacePrecaution(confinedSpaceIndex)">
+                                                <div class="card-body text-center">
+                                                    <span>{{confinedSpace.value}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-raised-button color="primary"
+                                        [disabled]="!(selectedGeneralWorkArray.length > 0)"
+                                        (click)="saveGeneralForm()">Submit</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                    </mat-stepper>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

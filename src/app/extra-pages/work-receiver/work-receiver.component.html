@@ -1,0 +1,238 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header" *ngFor="let breadscrum of breadscrums">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+            </app-breadcrumb>
+        </div>
+        <div class="work-initiator-wrapper">
+            <div class="card p-3">
+                <h3 class="text-center">Work Permit Forms</h3>
+                <nz-collapse nzAccordion class="form-collapse">
+                    <nz-collapse-panel *ngFor="let form of forms; let formIndex = index;"
+                        [nzHeader]="'Form '+(formIndex+1)" [nzExtra]="extraTpl">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img class="img-fluid" src="../../../assets/images/undraw_heavy_box_agqi.svg"
+                                        alt="Form_Image">
+                                </div>
+                                <div class="col-md-8">
+                                    <h5>Type Of Permit</h5>
+                                    <div class="d-flex flex-row justify-content-start p-2">
+                                        <span *ngFor="let type of form.general.type_of_work_permit"
+                                            class="btn btn-primary pills">
+                                            {{type}}
+                                        </span>
+                                    </div>
+                                    <h5 class="mt-3">Work Planned Date & Time</h5>
+                                    <div class="p-2 row">
+                                        <div class="d-flex flex-row justify-content-start align-items-center">
+                                            <h6 style="margin-bottom: 0;">Work Date:</h6>
+                                            <span style="margin-left: 10px;">{{form.general.work_planned.date}}</span>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">Work Start Time:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.work_planned.start_time}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0;">Work End Time:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.work_planned.end_time}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 *ngIf="form.general.work_issuer" class="mt-3">Work Issuer Details</h5>
+                                    <div *ngIf="form.general.work_issuer" class="p-2 row">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">Issuer Name:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.work_issuer.issuer_name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">Issuer Department:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.work_issuer.issuer_dept}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">Work Supervisor Name:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.work_issuer.work_supervisor_name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">Contact number:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.work_issuer.contact_number}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 *ngIf="form.general.area_of_work" class="mt-3">Area Of Work</h5>
+                                    <div *ngIf="form.general.area_of_work" class="p-2 row">
+                                        <p>{{form.general.area_of_work}}</p>
+                                    </div>
+
+                                    <h5 *ngIf="form.general.equipment_used" class="mt-3">Equipment Used</h5>
+                                    <div *ngIf="form.general.equipment_used" class="p-2 row">
+                                        <p style="margin-bottom: 0;">{{form.general.equipment_used}}</p>
+                                    </div>
+
+                                    <h5 *ngIf="form.general.receiver_contractor_details" class="mt-3">Receiver -
+                                        Contractor / Vendor Details</h5>
+                                    <div *ngIf="form.general.receiver_contractor_details" class="p-2 row">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">Organisation Name:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.receiver_contractor_details.organization_name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">Number Of Workders:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.receiver_contractor_details.no_of_workders}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">Supervisor Name:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.receiver_contractor_details.supervisor_name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">Contact number:</h6>
+                                                    <span
+                                                        style="margin-left: 10px;">{{form.general.receiver_contractor_details.contact_number}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 *ngIf="form.hazard_identified.length > 0" class="mt-3">Hazards Identified</h5>
+                                    <div *ngIf="form.hazard_identified.length > 0" class="p-2 row">
+                                        <div class="row">
+                                            <div *ngFor="let hazard of form.hazard_identified; let hazardIndex = index;"
+                                                class="col-md-4 mt-2">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">{{hazardIndex + 1}}:</h6>
+                                                    <span style="margin-left: 10px;">{{hazard}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 *ngIf="form.PPEs_to_be_used.length > 0" class="mt-3">PPE's To Be Used</h5>
+                                    <div *ngIf="form.PPEs_to_be_used.length > 0" class="p-2 row">
+                                        <div class="row">
+                                            <div *ngFor="let ppe of form.PPEs_to_be_used; let ppeIndex = index;"
+                                                class="col-md-4 mt-2">
+                                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                                    <h6 style="margin-bottom: 0; ">{{ppeIndex + 1}}:</h6>
+                                                    <span style="margin-left: 10px;">{{ppe}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 *ngIf="form.precautions_checklist" class="mt-3">Precautions Checklist</h5>
+                                    <div *ngIf="form.precautions_checklist" class="p-2 row">
+                                        <div *ngIf="form.precautions_checklist.general_work.length > 0" class="row p-2">
+                                            <h6 style="margin-bottom: 0;">General Work</h6>
+                                            <div class="row">
+                                                <div *ngFor="let precaution of form.precautions_checklist.general_work; let gwPrecautionIndex = index;"
+                                                    class="col-md-4 mt-2">
+                                                    <div
+                                                        class="d-flex flex-row justify-content-start align-items-start">
+                                                        <h6 style="margin-bottom: 0; margin-top: 2px;">
+                                                            {{gwPrecautionIndex + 1}}:</h6>
+                                                        <span style="margin-left: 10px;">{{precaution}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h6 style="margin-bottom: 0;" class="mt-2">Hot Work</h6>
+                                            <div class="row">
+                                                <div *ngFor="let precaution of form.precautions_checklist.hot_work; let hwPrecautionIndex = index;"
+                                                    class="col-md-4 mt-2">
+                                                    <div
+                                                        class="d-flex flex-row justify-content-start align-items-start">
+                                                        <h6 style="margin-bottom: 0; margin-top: 2px;">
+                                                            {{hwPrecautionIndex + 1}}:</h6>
+                                                        <span style="margin-left: 10px;">{{precaution}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h6 style="margin-bottom: 0;" class="mt-2">Height / Fragile Roof</h6>
+                                            <div class="row">
+                                                <div *ngFor="let precaution of form.precautions_checklist.height_roof; let hrPrecautionIndex = index;"
+                                                    class="col-md-4 mt-2">
+                                                    <div
+                                                        class="d-flex flex-row justify-content-start align-items-start">
+                                                        <h6 style="margin-bottom: 0; margin-top: 2px;">
+                                                            {{hrPrecautionIndex + 1}}:</h6>
+                                                        <span style="margin-left: 10px;">{{precaution}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h6 style="margin-bottom: 0;" class="mt-2">Confined Space</h6>
+                                            <div class="row">
+                                                <div *ngFor="let precaution of form.precautions_checklist.confined_space; let csPrecautionIndex = index;"
+                                                    class="col-md-4 mt-2">
+                                                    <div
+                                                        class="d-flex flex-row justify-content-start align-items-start">
+                                                        <h6 style="margin-bottom: 0; margin-top: 2px;">
+                                                            {{csPrecautionIndex + 1}}:</h6>
+                                                        <span style="margin-left: 10px;">{{precaution}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 class="mt-3">Sign & Approve</h5>
+                                    <div *ngIf="!form.approval.work_receiver.isApproved" class="p-2 row">
+                                        <div class="">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>Enter Name</mat-label>
+                                                <input matInput type="text" placeholder="Enter Name" [(ngModel)]="name">
+                                            </mat-form-field>
+                                            <br>
+                                            <button mat-raised-button color="warn" [disabled]="!(name.length > 0)"
+                                                (click)="approveForm(formIndex)">Approve</button>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="form.approval.work_receiver.isApproved" class="p-2 row">
+                                        <span><strong>This form has been approved by you.</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #extraTpl>
+                            <!-- You can use stopPropagation if you don't want the panel to toggle -->
+                            <div *ngIf="form.created_on">
+                                {{getDateAndTime(form.created_on)}}
+                            </div>
+                        </ng-template>
+                    </nz-collapse-panel>
+                </nz-collapse>
+            </div>
+        </div>
+    </div>
+</section>

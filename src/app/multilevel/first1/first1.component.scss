@@ -1,0 +1,35 @@
+.hazards-card {
+    cursor: pointer;
+    border: 0.2px solid rgb(204, 204, 204);
+}
+
+.hazards-card:hover {
+    background-color: rgb(193, 230, 193);
+}
+
+.hazard-selected {
+    cursor: pointer;
+    border: 2px solid rgb(0, 255, 64);
+}
+
+.hazard-selected:hover {
+    border: 2px solid rgb(255, 47, 47);
+}
+
+.ppe-card {
+    cursor: pointer;
+    border: 0.2px solid rgb(204, 204, 204);
+}
+
+.ppe-card:hover {
+    background-color: rgb(193, 230, 193);
+}
+
+.ppe-selected {
+    cursor: pointer;
+    border: 2px solid rgb(0, 255, 64);
+}
+
+.ppe-selected:hover {
+    border: 2px solid rgb(255, 47, 47);
+}

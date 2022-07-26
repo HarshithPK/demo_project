@@ -1,0 +1,150 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header" *ngFor="let breadscrum of breadscrums">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+            </app-breadcrumb>
+        </div>
+        <!-- Widgets -->
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="counter-box text-center">
+                    <div class="text font-17 m-b-5">Total Forms</div>
+                    <h3 class="m-b-10">{{totalForms}}
+                        <!-- <i class="material-icons col-green">trending_up</i> -->
+                    </h3>
+                    <div class="apex-chart-center">
+                        <apx-chart [series]="smallBarChart.series" [chart]="smallBarChart.chart"
+                            [plotOptions]="smallBarChart.plotOptions" [tooltip]="smallBarChart.tooltip">
+                        </apx-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="counter-box text-center">
+                    <div class="text font-17 m-b-5">Approval Pending</div>
+                    <h3 class="m-b-10">{{approvalPendingForms}}
+                        <!-- <i class="material-icons col-red">trending_down</i> -->
+                    </h3>
+                    <div class="apex-chart-center">
+                        <apx-chart [series]="smallAreaChart.series" [chart]="smallAreaChart.chart"
+                            [stroke]="smallAreaChart.stroke" [yaxis]="smallAreaChart.yaxis" [fill]="smallAreaChart.fill"
+                            [colors]="smallAreaChart.colors"></apx-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="counter-box text-center">
+                    <div class="text font-17 m-b-5">Approved Forms</div>
+                    <h3 class="m-b-10">{{approvedFroms}}
+                        <!-- <i class="material-icons col-green">trending_up</i> -->
+                    </h3>
+                    <div class="apex-chart-center">
+                        <apx-chart [series]="smallColumnChart.series" [chart]="smallColumnChart.chart"
+                            [plotOptions]="smallColumnChart.plotOptions" [tooltip]="smallColumnChart.tooltip">
+                        </apx-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="counter-box text-center">
+                    <div class="text font-17 m-b-5">Completed</div>
+                    <h3 class="m-b-10">{{completed}}
+                        <!-- <i class="material-icons col-red">trending_down</i> -->
+                    </h3>
+                    <div class="apex-chart-center">
+                        <apx-chart [series]="smallLineChart.series" [chart]="smallLineChart.chart"
+                            [stroke]="smallLineChart.stroke" [tooltip]="smallLineChart.tooltip"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Widgets -->
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Recent</strong> Report
+                        </h2>
+                        <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>Action</button>
+                            <button mat-menu-item>Another action</button>
+                            <button mat-menu-item>Something else here</button>
+                        </mat-menu>
+                    </div>
+                    <div class="body">
+                        <div class="card">
+                            <!-- Canvas for Chart.js -->
+                            <div class="recent-report__chart">
+                                <canvas baseChart [chartType]="'line'" [datasets]="areaChartData"
+                                    [labels]="areaChartLabels" [options]="areaChartOptions" [plugins]="areaChartPlugins"
+                                    [legend]="true">
+                                </canvas>
+                            </div>
+                            <!-- Custom Axis -->
+                            <div class="axisData">
+                                <div class="tick">
+                                    MON <span class="value productValue">24</span> <span
+                                        class="value serviceValue">20</span>
+                                </div>
+                                <div class="tick">
+                                    TUE <span class="value productValue">18</span> <span
+                                        class="value serviceValue">22</span>
+                                </div>
+                                <div class="tick">
+                                    WED <span class="value productValue">16</span> <span
+                                        class="value serviceValue">30</span>
+                                </div>
+                                <div class="tick">
+                                    THU <span class="value productValue">18</span> <span
+                                        class="value serviceValue">22</span>
+                                </div>
+                                <div class="tick">
+                                    FRI <span class="value productValue">24</span> <span
+                                        class="value serviceValue">18</span>
+                                </div>
+                                <div class="tick">
+                                    SAT <span class="value productValue">36</span> <span
+                                        class="value serviceValue">22</span>
+                                </div>
+                                <div class="tick">
+                                    SUN <span class="value productValue">28</span> <span
+                                        class="value serviceValue">30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>Recent</strong> Report
+                        </h2>
+                        <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>Action</button>
+                            <button mat-menu-item>Another action</button>
+                            <button mat-menu-item>Something else here</button>
+                        </mat-menu>
+                    </div>
+                    <div class="body">
+                        <div class="card">
+                            <!-- Canvas for Chart.js -->
+                            <canvas baseChart class="chart" [datasets]="radarChartData" [labels]="radarChartLabels"
+                                [options]="radarChartOptions" [chartType]="radarChartType" [plugins]="radarChartPlugins"
+                                [colors]="radarChartColors"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
