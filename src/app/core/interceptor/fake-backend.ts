@@ -14,7 +14,7 @@ import { User } from "../models/user";
 const users: User[] = [
     {
         id: 1,
-        username: "iraitech@admin.com",
+        username: "admin@admin.com",
         password: "admin",
         firstName: "Sarah",
         lastName: "Smith",

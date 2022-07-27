@@ -30,7 +30,7 @@ export class SigninComponent
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
             email: [
-                "iraitech@admin.com",
+                "admin@admin.com",
                 [
                     Validators.required,
                     Validators.email,

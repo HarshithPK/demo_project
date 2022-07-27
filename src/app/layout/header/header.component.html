@@ -5,17 +5,19 @@
                 (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
             <!-- mobile menu bars -->
             <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
-            <a class="navbar-brand" routerLink="dashboard/main">
-                <img src="assets/images/logo.png" alt="" />
-                <span class="logo-name">Iraitech</span>
+            <a class="navbar-brand text-center" routerLink="dashboard/main" style="margin-right: auto;
+            margin-left: auto;">
+                <img class="" src="assets/images/demo_logo.png" alt="" style="max-height: 40px;" />
+                <!-- <span class="logo-name">Work Permit</span> -->
             </a>
         </div>
         <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed">
             <ul class="pull-left collapse-menu-icon">
-                <li>
+                <li class="d-flex flex-row align-items-center">
                     <button mat-icon-button (click)="callSidemenuCollapse()" class="sidemenu-collapse">
                         <app-feather-icons [icon]="'menu'" [class]="'header-icon'"></app-feather-icons>
                     </button>
+                    <span class="logo-name">Work Permit</span>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
